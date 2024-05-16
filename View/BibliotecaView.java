@@ -8,14 +8,15 @@ public class BibliotecaView {
     private BibliotecaController controller;
     private Scanner scanner;
 
-    // Construtor
-    public BibliotecaView() {
+    
+    public BibliotecaView() 
+    {
         this.controller = new BibliotecaController();
         this.scanner = new Scanner(System.in);
     }
 
-    // Método para exibir o menu principal
-    public void exibirMenu() {
+    public void exibirMenu() 
+    {
         System.out.println("Bem-vindo à Biblioteca!");
         System.out.println("1. Pesquisar livros pelo título");
         System.out.println("2. Pesquisar livros pelo autor");
@@ -26,15 +27,17 @@ public class BibliotecaView {
         System.out.print("Escolha uma opção: ");
     }
 
-    // Método para iniciar a aplicação
-    public void iniciar() {
+    public void iniciar() 
+    {
         int escolha;
-        do {
+        do 
+        {
             exibirMenu();
             escolha = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer
+            scanner.nextLine();
 
-            switch (escolha) {
+            switch (escolha) 
+            {
                 case 1:
                     pesquisarPorTitulo();
                     break;
@@ -59,14 +62,16 @@ public class BibliotecaView {
         } while (escolha != 0);
     }
 
-    // Método para pesquisar livros pelo título
-    private void pesquisarPorTitulo() {
+    private void pesquisarPorTitulo() 
+    {
         System.out.print("Digite o título do livro: ");
         String titulo = scanner.nextLine();
         List<Livro> resultado = controller.pesquisarPorTitulo(titulo);
-        if (resultado.isEmpty()) {
+        if (resultado.isEmpty()) 
+        {
             System.out.println("Nenhum livro encontrado com o título '" + titulo + "'.");
-        } else {
+        } else 
+        {
             System.out.println("Livros encontrados com o título '" + titulo + "':");
             for (Livro livro : resultado) {
                 System.out.println(livro.getTitulo() + " - " + livro.getAutor());
@@ -74,35 +79,39 @@ public class BibliotecaView {
         }
     }
 
-    // Método para pesquisar livros pelo autor
     private void pesquisarPorAutor() {
         System.out.print("Digite o nome do autor: ");
         String autor = scanner.nextLine();
         List<Livro> resultado = controller.pesquisarPorAutor(autor);
-        if (resultado.isEmpty()) {
+        if (resultado.isEmpty()) 
+        {
             System.out.println("Nenhum livro encontrado do autor '" + autor + "'.");
-        } else {
+        } else 
+        {
             System.out.println("Livros encontrados do autor '" + autor + "':");
-            for (Livro livro : resultado) {
+            for (Livro livro : resultado) 
+            {
                 System.out.println(livro.getTitulo() + " - " + livro.getAutor());
             }
         }
     }
 
-    // Método para solicitar empréstimo de livro
-    private void emprestarLivro() {
+    private void emprestarLivro() 
+    {
         System.out.print("Digite o número de registro do livro que deseja emprestar: ");
         int idLivro = scanner.nextInt();
-        if (controller.livroDisponivel(idLivro)) {
+        if (controller.livroDisponivel(idLivro)) 
+        {
             controller.emprestarLivro(idLivro);
             System.out.println("Livro emprestado com sucesso!");
-        } else {
+        } else 
+        {
             System.out.println("Livro não disponível para empréstimo ou não encontrado.");
         }
     }
 
-    // Método para devolver livro
-    private void devolverLivro() {
+    private void devolverLivro() 
+    {
         System.out.print("Digite o número de registro do livro que deseja devolver: ");
         int idLivro = scanner.nextInt();
         if (controller.devolverLivro(idLivro)) {
@@ -112,8 +121,8 @@ public class BibliotecaView {
         }
     }
 
-    // Método para adicionar um novo livro à biblioteca
-    private void adicionarLivro() {
+    private void adicionarLivro() 
+    {
         System.out.print("Digite o título do novo livro: ");
         String titulo = scanner.nextLine();
         System.out.print("Digite o autor do novo livro: ");
